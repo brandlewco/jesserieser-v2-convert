@@ -1,0 +1,1645 @@
+collections_config:
+  collections:
+    name: Collections
+    path: site/content/collections
+    schemas:
+      default:
+        path: .cloudcannon/schemas/collection-page-builder.md
+        name: Collections - Page Builder
+        _enabled_editors:
+          - visual
+        _inputs:
+          $.layout:
+            hidden: true
+          $.seo.meta_title: &ref_0
+            comment: 50-60 character title of this page.
+          $.seo.meta_description: &ref_1
+            comment: >-
+              110-160 character description of this page. Use as many keywords
+              and phrases as possible.
+          $.collection_meta:
+            label: Collection Description
+            comment: First Line
+          $.collection_meta_2:
+            label: Collection Description 2
+            comment: Second Line
+          $.slug:
+            comment: the last part of the url<br>e.g. collections/work-title
+          $.collection_cover:
+            type: file
+            label: Cover Image
+          $.collection_cover_mobile:
+            type: file
+            label: Cover Image Mobile
+          $.theme_color:
+            options:
+              format: hex
+          $.theme_color_all_works:
+            type: color
+            label: Theme Color (All Works Highlight)
+            options:
+              format: hex
+          $.navigation_theme:
+            type: select
+            options:
+              values: _select_data.navigation_theme
+          $.collection_description:
+            type: markdown
+            comment: >-
+              Used for the collection header, and google meta data. (300
+              characters)
+          $.px_extra:
+            label: Extra Padding on Descriptions On Large Screens
+          $.collection_description_alignment:
+            type: select
+            options:
+              values: _select_data.collection_description_alignment
+          $.row_alignment:
+            type: select
+            label: First Row Justification
+            comment: >-
+              start (left) / center (center) / end (right) / between (even
+              space     between media) / around (even space outside media)
+            options:
+              values: _select_data.row_alignment
+          $.collection_layout_builder:
+            type: array
+            label: Layout Builder
+            options:
+              structures: _structures.collection-page-builder-collection_layout_builder
+          $.collection_filter:
+            type: select
+            label: Work Type
+            options:
+              values: _select_data.categories_filter
+          $.collection_category:
+            type: multiselect
+            options:
+              values: _select_data.categories
+          $.collection_preview[*]:
+            type: image
+          $.collection_preview:
+            type: array
+            comment: Preview images used on all work page
+          $.cover_image:
+            label: Social Media Card
+            comment: This image is what appears in OpenGraph previews and image masks
+          $.collection_content:
+            type: markdown
+            label: Collection Brief
+            comment: Project brief at footer of collection
+          $.collection_awards:
+            type: array
+            options:
+              structures: _structures.collection-page-builder-collection_awards
+          $.collection_exhibition:
+            type: array
+            options:
+              structures: _structures.collection-page-builder-collection_awards
+          $.collection_press:
+            type: array
+            options:
+              structures: _structures.collection-page-builder-collection_awards
+          $.hide_footer:
+            comment: hide footer / more button
+          $.collection_archive:
+            label: Archive
+            comment: >-
+              Archive Collection to remove it from the flow of featured
+              collections
+          $.date:
+            instance_value: NOW
+            hidden: true
+            label: Publish Date
+          $.collection_hidden:
+            hidden: true
+            label: Hide Collection
+            comment: >-
+              Don't show this collection in the all works sorter, accessible
+              only through direct link.
+        text_key: slug
+  shop:
+    name: Shop
+    path: site/content/shop
+    schemas:
+      default:
+        path: .cloudcannon/schemas/shop.md
+        name: Shop
+        _enabled_editors:
+          - visual
+        _inputs:
+          $.layout:
+            hidden: true
+          $.title:
+            label: Item Title
+          $.collection_meta:
+            label: Item Meta
+            comment: Project year, or one line description
+          $.collection_meta_2:
+            label: Item Meta 2
+            comment: secondary meta (optional)
+          $.price:
+            type: number
+            label: Item Price
+            comment: ''
+          $.sale:
+            label: On Sale
+          $.sale_price:
+            type: number
+            comment: ''
+          $.collection_preview[*]:
+            type: image
+          $.collection_preview:
+            type: array
+            comment: Preview images used on all work page
+          $.theme_color:
+            options:
+              format: hex
+          $.collection_category:
+            type: multiselect
+            options:
+              values: _select_data.categories
+          $.date:
+            instance_value: NOW
+            hidden: true
+            label: Publish Date
+          $.collection_hidden:
+            hidden: true
+            label: Hide Collection
+            comment: >-
+              Don't show this collection in the all works sorter, accessible
+              only through direct link.
+          $.shop:
+            hidden: true
+            label: Shop Navigation Label
+        text_key: title
+  posts:
+    name: Posts
+    path: site/content/posts
+    schemas:
+      default:
+        path: .cloudcannon/schemas/blog-post-builder.md
+        name: Blog - Post Builder
+        _enabled_editors:
+          - data
+        _inputs:
+          $.seo.meta_title: *ref_0
+          $.seo.meta_description: *ref_1
+          $.news_category:
+            type: multiselect
+            options:
+              values: _select_data.categories_news
+          $.attached_collection:
+            type: select
+            options:
+              values: collections.collections
+              value_key: content_path
+          $.attached_link:
+            type: textarea
+            comment: link outside the site.
+          $.blog_block_cover:
+            type: file
+          $.block_aspect_ratio:
+            type: multiselect
+            label: Blog Block Aspect Ratio
+            options:
+              values: _select_data.blog-post-builder-block_aspect_ratio
+          $.vimeo_block_cover:
+            type: number
+            comment: Vimeo Video ID
+          $.blog_slider:
+            type: array
+            options:
+              structures: _structures.blog-post-builder-blog_slider
+          $.blog_header:
+            hidden: true
+            type: file
+          $.content:
+            type: markdown
+          $.theme_color:
+            label: Button Color
+            options:
+              format: hex
+          $.blog_builder:
+            type: array
+            label: Blog Photo Grid
+            options:
+              structures: _structures.blog-post-builder-blog_builder
+        text_key: title
+collection_groups:
+  - heading: COLLECTIONS
+    collections:
+      - collections
+      - shop
+  - heading: CONTENT
+    collections:
+      - posts
+_select_data:
+  navigation_theme:
+    - black
+    - white
+  collection_description_alignment:
+    - left
+    - center
+    - right
+  row_alignment:
+    - around
+    - between
+    - center
+    - end
+    - start
+  width:
+    - '10'
+    - '100'
+    - '15'
+    - '20'
+    - '25'
+    - '30'
+    - '33'
+    - '40'
+    - '45'
+    - '50'
+    - '55'
+    - '60'
+    - '66'
+    - '70'
+    - '75'
+    - '80'
+    - '90'
+  text_size:
+    - 10xl
+    - 2xl
+    - 4xl
+    - 6xl
+    - 7xl
+    - 8xl
+    - 9xl
+    - base
+    - lg
+    - sm
+    - xl
+    - xs
+  block_aspect_ratio:
+    - 11x8-5
+    - 16x9
+    - 1x2
+    - 2x3
+    - 3x2
+    - 3x4
+    - 4x3
+    - 4x5
+    - 5x4
+    - 8-5x11
+    - 9x16
+  align_y:
+    - center
+    - end
+    - start
+  text_alignment:
+    - center
+    - left
+    - right
+  collection-page-builder-width:
+    - '10'
+    - '100'
+    - '20'
+    - '30'
+    - '33'
+    - '40'
+    - '45'
+    - '50'
+    - '55'
+    - '60'
+    - '66'
+    - '70'
+    - '80'
+    - '90'
+  margin_y:
+    - '-100'
+    - '-200'
+    - '-50'
+    - '0'
+    - '100'
+    - '1000'
+    - '200'
+    - '300'
+    - '400'
+    - '50'
+    - '500'
+    - '600'
+    - '700'
+    - '800'
+    - '900'
+  text_tracking:
+    - normal
+    - tight
+    - tighter
+    - wide
+    - wider
+    - widest
+  margin_left:
+    - 0%
+    - 10%
+    - 100%
+    - 15%
+    - 20%
+    - 25%
+    - 30%
+    - 35%
+    - 40%
+    - 45%
+    - 5%
+    - 50%
+    - 55%
+    - 60%
+    - 65%
+    - 70%
+    - 75%
+    - 80%
+    - 85%
+    - 90%
+    - 95%
+  font_weight:
+    - bold
+    - extrabold
+    - hairline
+    - light
+    - normal
+    - semibold
+  collection-page-builder-margin_y:
+    - '-100'
+    - '-200'
+    - '-50'
+    - '0'
+    - '100'
+    - '200'
+    - '300'
+    - '400'
+    - '50'
+    - '500'
+    - '600'
+    - '700'
+  margin_right:
+    - 0%
+    - 10%
+    - 100%
+    - 15%
+    - 20%
+    - 25%
+    - 30%
+    - 35%
+    - 40%
+    - 45%
+    - 5%
+    - 50%
+    - 55%
+    - 60%
+    - 65%
+    - 70%
+    - 75%
+    - 80%
+    - 85%
+    - 90%
+    - 95%
+  blog-post-builder-block_aspect_ratio:
+    - ratio-11x8-5
+    - ratio-16x9
+    - ratio-1x1
+    - ratio-2x3
+    - ratio-3x2
+    - ratio-3x4
+    - ratio-4x3
+    - ratio-4x5
+    - ratio-5x4
+    - ratio-8-5x11
+    - ratio-9x16
+  about-page-builder-margin_y:
+    - '-100'
+    - '-200'
+    - '-50'
+    - '0'
+    - '100'
+    - '200'
+    - '300'
+    - '400'
+    - '50'
+    - '500'
+    - '600'
+    - '700'
+  title_margin_y:
+    - 0%
+    - 10%
+    - 100%
+    - 15%
+    - 20%
+    - 25%
+    - 30%
+    - 35%
+    - 40%
+    - 45%
+    - 5%
+    - 50%
+    - 55%
+    - 60%
+    - 65%
+    - 70%
+    - 75%
+    - 80%
+    - 85%
+    - 90%
+    - 95%
+  title_margin_left:
+    - '-10%'
+    - '-100%'
+    - '-15%'
+    - '-20%'
+    - '-25%'
+    - '-30%'
+    - '-35%'
+    - '-40%'
+    - '-45%'
+    - '-5%'
+    - '-50%'
+    - '-55%'
+    - '-60%'
+    - '-65%'
+    - '-70%'
+    - '-75%'
+    - '-80%'
+    - '-85%'
+    - '-90%'
+    - '-95%'
+    - 0%
+    - 10%
+    - 100%
+    - 15%
+    - 20%
+    - 25%
+    - 30%
+    - 35%
+    - 40%
+    - 45%
+    - 5%
+    - 50%
+    - 55%
+    - 60%
+    - 65%
+    - 70%
+    - 75%
+    - 80%
+    - 85%
+    - 90%
+    - 95%
+  home-page-builder-block_aspect_ratio:
+    - 11x8-5
+    - 16x9
+    - 1x2
+    - 2x3
+    - 3x2
+    - 3x4
+    - 4x3
+    - 4x5
+    - 5x4
+    - 8-5:11
+    - 9x16
+  title_margin_right:
+    - '-10%'
+    - '-100%'
+    - '-15%'
+    - '-20%'
+    - '-25%'
+    - '-30%'
+    - '-35%'
+    - '-40%'
+    - '-45%'
+    - '-5%'
+    - '-50%'
+    - '-55%'
+    - '-60%'
+    - '-65%'
+    - '-70%'
+    - '-75%'
+    - '-80%'
+    - '-85%'
+    - '-90%'
+    - '-95%'
+    - 0%
+    - 10%
+    - 100%
+    - 15%
+    - 20%
+    - 25%
+    - 30%
+    - 35%
+    - 40%
+    - 45%
+    - 5%
+    - 50%
+    - 55%
+    - 60%
+    - 65%
+    - 70%
+    - 75%
+    - 80%
+    - 85%
+    - 90%
+    - 95%
+  home-page-builder-text_size:
+    - 10xl
+    - 2xl
+    - 4xl
+    - 6xl
+    - 7xl
+    - 8xl
+    - 9xl
+    - base
+    - lg
+    - sm
+    - xs
+  about-page-builder-text_size:
+    - 10xl
+    - 2xl
+    - 4xl
+    - 6xl
+    - 7xl
+    - 8xl
+    - 9xl
+    - base
+    - lg
+    - sm
+    - xs
+  home-page-builder-width:
+    - '10'
+    - '100'
+    - '15'
+    - '20'
+    - '25'
+    - '30'
+    - '33'
+    - '40'
+    - '45'
+    - '50'
+    - '55'
+    - '60'
+    - '66'
+    - '70'
+    - '80'
+    - '90'
+  line_height:
+    - loose
+    - none
+    - normal
+    - relaxed
+    - snug
+    - tight
+  home-page-builder-margin_y:
+    - '-100'
+    - '-200'
+    - '-50'
+    - '0'
+    - '100'
+    - '200'
+    - '300'
+    - '400'
+    - '50'
+    - '500'
+    - '600'
+    - '700'
+  about-page-builder-text_alignment:
+    - center
+    - justified
+    - left
+    - right
+  meta_align:
+    - center
+    - left
+    - right
+  home-page-builder-text_alignment:
+    - center
+    - justified
+    - left
+    - right
+_structures:
+  collection-page-builder-collection_layout_builder:
+    id_key: template
+    values:
+      - label: 🏙 Image
+        value:
+          template: block-media-element
+          block: media-element
+          image: null
+          caption: ''
+          color: null
+          width: '33'
+          align_y: start
+          margin_y: '50'
+          margin_left: 0%
+          margin_right: 0%
+        text_key: caption
+        _inputs:
+          block:
+            hidden: true
+          caption:
+            type: html
+          color:
+            comment: Background color show on image hover
+            options:
+              format: hex
+          width:
+            type: select
+            label: Media Width
+            options:
+              values: _select_data.width
+          align_y:
+            type: select
+            label: Row Alignment / Top to Bottom (Y)
+            comment: align top (start) / align center (center) / align bottom (end)
+            options:
+              values: _select_data.align_y
+          margin_y:
+            type: select
+            label: Top Margin (Y)
+            options:
+              values: _select_data.margin_y
+          margin_left:
+            type: select
+            label: Left Margin (X)
+            comment: 0%-100% from the left margin
+            options:
+              values: _select_data.margin_left
+          margin_right:
+            type: select
+            label: Right Margin (X)
+            comment: 0%-100% from the right margin
+            options:
+              values: _select_data.margin_right
+      - label: 🔤 Text
+        value:
+          template: block-media-text
+          block: media-text
+          text: ''
+          background_color: null
+          background_image_toggle: false
+          image: null
+          text_color: null
+          text_size: 2xl
+          text_alignment: left
+          text_tracking: normal
+          font_weight: []
+          width: '50'
+          align_y: start
+          margin_y: '50'
+          margin_left: 0%
+          margin_right: 0%
+          parallax: false
+          image_css: ''
+          caption_css: ''
+        text_key: text
+        _inputs:
+          block:
+            hidden: true
+          text:
+            type: markdown
+          background_color:
+            options:
+              format: hex
+          background_image_toggle:
+            label: Background Image
+          image:
+            label: Background Image
+          text_color:
+            options:
+              format: hex
+          text_size:
+            type: select
+            options:
+              values: _select_data.text_size
+          text_alignment:
+            type: select
+            comment: left / center / right
+            options:
+              values: _select_data.text_alignment
+          text_tracking:
+            type: select
+            comment: spacing between letters
+            options:
+              values: _select_data.text_tracking
+          font_weight:
+            type: multiselect
+            options:
+              values: _select_data.font_weight
+          width:
+            type: select
+            label: Media Width
+            options:
+              values: _select_data.width
+          align_y:
+            type: select
+            label: Row Alignment / Top to Bottom (Y)
+            comment: align top (start) / align center (center) / align bottom (end)
+            options:
+              values: _select_data.align_y
+          margin_y:
+            type: select
+            label: Top Margin (Y)
+            options:
+              values: _select_data.collection-page-builder-margin_y
+          margin_left:
+            type: select
+            label: Left Margin (X)
+            comment: 0%-100% from the left margin
+            options:
+              values: _select_data.margin_left
+          margin_right:
+            type: select
+            label: Right Margin (X)
+            comment: 0%-100% from the right margin
+            options:
+              values: _select_data.margin_right
+      - label: ⏯ Vimeo
+        value:
+          template: block-media-motion
+          block: media-motion
+          vimeo_id: 0
+          image: null
+          caption: ''
+          color: null
+          show_controls: false
+          block_aspect_ratio: []
+          width: '33'
+          align_y: start
+          margin_y: '50'
+          margin_left: 0%
+          margin_right: 0%
+        text_key: caption
+        _inputs:
+          block:
+            hidden: true
+          vimeo_id:
+            type: number
+            comment: ''
+          image:
+            hidden: true
+          color:
+            hidden: true
+            comment: >-
+              Player Control / Titles Color (defaults to page theme color if not
+              set)
+            options:
+              format: hex
+          show_controls:
+            comment: show vimeo controls
+          block_aspect_ratio:
+            type: multiselect
+            label: Video Aspect Ratio
+            options:
+              values: _select_data.block_aspect_ratio
+          width:
+            type: select
+            label: Media Width
+            options:
+              values: _select_data.collection-page-builder-width
+          align_y:
+            type: select
+            label: Row Alignment / Top to Bottom (Y)
+            comment: align top (start) / align center (center) / align bottom (end)
+            options:
+              values: _select_data.align_y
+          margin_y:
+            type: select
+            label: Top Margin (Y)
+            options:
+              values: _select_data.collection-page-builder-margin_y
+          margin_left:
+            type: select
+            label: Left Margin (X)
+            comment: 0%-100% from the left margin
+            options:
+              values: _select_data.margin_left
+          margin_right:
+            type: select
+            label: Right Margin (X)
+            comment: 0%-100% from the right margin
+            options:
+              values: _select_data.margin_right
+      - label: ⎓ Row ⎓
+        value:
+          template: block-media-row
+          block: media-row
+          row_alignment: between
+        _inputs:
+          block:
+            hidden: true
+          row_alignment:
+            type: select
+            label: Row Justification
+            comment: >-
+              start (left) / center (center) / end (right) / between (even space
+              between media) / around (even space outside media)
+            options:
+              values: _select_data.row_alignment
+  collection-page-builder-collection_awards:
+    id_key: template
+    values:
+      - label: • List Item
+        value:
+          template: popup-text-element
+          content: |-
+            **2019**  
+            AP 35: American Photography Annual 35  
+            Best Personal Work Series:  
+            "Phoenix: A Dystopian Legoland That Tastes Like Candy"
+          icon: null
+          url: ''
+        text_key: content
+        _inputs:
+          content:
+            type: markdown
+          icon:
+            type: file
+          url:
+            comment: Link out URL
+  blog-post-builder-blog_slider:
+    id_key: template
+    values:
+      - label: 🏙 Blog Slider Image
+        value:
+          template: block-media-element-url
+          block: media-element-url
+          image: null
+        text_key: caption
+        _inputs:
+          block:
+            hidden: true
+      - label: ⏯ Blog Slider Vimeo
+        value:
+          template: block-media-motion-id
+          block: media-motion-id
+          vimeo_id: 0
+          show_controls: false
+        text_key: caption
+        _inputs:
+          block:
+            hidden: true
+          vimeo_id:
+            type: number
+            comment: ''
+          show_controls:
+            comment: show vimeo controls
+  blog-post-builder-blog_builder:
+    id_key: template
+    values:
+      - label: ⎓ Blog Gallery Row ⎓
+        value:
+          template: block-media-row-static
+          block: media-row-static
+        _inputs:
+          block:
+            hidden: true
+      - label: 🏙 Blog Image
+        value:
+          template: block-media-element-static
+          block: media-element-static
+          image: null
+          caption: ''
+          width: '50'
+        text_key: caption
+        _inputs:
+          block:
+            hidden: true
+          width:
+            type: select
+            label: Media Width
+            options:
+              values: _select_data.width
+  home-page-builder-selected_works_theme:
+    id_key: template
+    values:
+      - label: ⭐️ Featured Image
+        value:
+          template: selected-works-theme
+          image: null
+          image_mobile: null
+          theme_color: null
+        _inputs:
+          image_mobile:
+            type: file
+          theme_color:
+            options:
+              format: hex
+  about-page-builder-page_sections:
+    id_key: template
+    values:
+      - label: 🔼 List Popup
+        value:
+          template: block-modal-list
+          block: modal-list
+          image: null
+          title: ''
+          meta: ''
+          color: null
+          modal_color: null
+          width: '33'
+          align_y: start
+          margin_y: '50'
+          margin_left: 0%
+          margin_right: 0%
+          title_margin_y: 35%
+          title_margin_left: 0%
+          title_margin_right: 0%
+          text_color: null
+          text_size: 2xl
+          line_height: normal
+          text_alignment: left
+          text_tracking: normal
+          font_weight: []
+          meta_align: left
+          modal_block: []
+        text_key: title
+        _inputs:
+          block:
+            hidden: true
+          title:
+            label: Popup Title
+          color:
+            label: Block Color
+            options:
+              format: hex
+          modal_color:
+            label: Popup Color
+            options:
+              format: hex
+          width:
+            type: select
+            label: Media Width
+            options:
+              values: _select_data.width
+          align_y:
+            type: select
+            label: Row Alignment / Top to Bottom (Y)
+            comment: align top (start) / align center (center) / align bottom (end)
+            options:
+              values: _select_data.align_y
+          margin_y:
+            type: select
+            label: Media Top Margin (Y)
+            options:
+              values: _select_data.about-page-builder-margin_y
+          margin_left:
+            type: select
+            label: Media Left Margin (X)
+            comment: 0%-100% from the left margin
+            options:
+              values: _select_data.margin_left
+          margin_right:
+            type: select
+            label: Media Right Margin (X)
+            comment: 0%-100% from the right margin
+            options:
+              values: _select_data.margin_right
+          title_margin_y:
+            type: select
+            label: Title Top Margin (y)
+            comment: 0%-100% where the parallax starts from
+            options:
+              values: _select_data.title_margin_y
+          title_margin_left:
+            type: select
+            label: Title Left Margin (X)
+            options:
+              values: _select_data.title_margin_left
+          title_margin_right:
+            type: select
+            label: Title Right Margin (X)
+            options:
+              values: _select_data.title_margin_right
+          text_color:
+            options:
+              format: hex
+          text_size:
+            type: select
+            options:
+              values: _select_data.about-page-builder-text_size
+          line_height:
+            type: select
+            comment: 1-2 line height scale
+            options:
+              values: _select_data.line_height
+          text_alignment:
+            type: select
+            comment: left / center / right
+            options:
+              values: _select_data.about-page-builder-text_alignment
+          text_tracking:
+            type: select
+            comment: spacing between letters
+            options:
+              values: _select_data.text_tracking
+          font_weight:
+            type: multiselect
+            options:
+              values: _select_data.font_weight
+          meta_align:
+            type: select
+            label: Meta Title Alignment (X)
+            options:
+              values: _select_data.meta_align
+          modal_block:
+            type: array
+            label: Blocks
+            options:
+              structures: _structures.collection-page-builder-collection_awards
+      - label: 🔤 Text
+        value:
+          template: block-media-text
+          block: media-text
+          text: ''
+          background_color: null
+          background_image_toggle: false
+          image: null
+          text_color: null
+          text_size: 2xl
+          text_alignment: left
+          text_tracking: normal
+          font_weight: []
+          width: '50'
+          align_y: start
+          margin_y: '50'
+          margin_left: 0%
+          margin_right: 0%
+          parallax: false
+          image_css: ''
+          caption_css: ''
+        text_key: text
+        _inputs:
+          block:
+            hidden: true
+          text:
+            type: markdown
+          background_color:
+            options:
+              format: hex
+          background_image_toggle:
+            label: Background Image
+          image:
+            label: Background Image
+          text_color:
+            options:
+              format: hex
+          text_size:
+            type: select
+            options:
+              values: _select_data.text_size
+          text_alignment:
+            type: select
+            comment: left / center / right
+            options:
+              values: _select_data.text_alignment
+          text_tracking:
+            type: select
+            comment: spacing between letters
+            options:
+              values: _select_data.text_tracking
+          font_weight:
+            type: multiselect
+            options:
+              values: _select_data.font_weight
+          width:
+            type: select
+            label: Media Width
+            options:
+              values: _select_data.width
+          align_y:
+            type: select
+            label: Row Alignment / Top to Bottom (Y)
+            comment: align top (start) / align center (center) / align bottom (end)
+            options:
+              values: _select_data.align_y
+          margin_y:
+            type: select
+            label: Top Margin (Y)
+            options:
+              values: _select_data.about-page-builder-margin_y
+          margin_left:
+            type: select
+            label: Left Margin (X)
+            comment: 0%-100% from the left margin
+            options:
+              values: _select_data.margin_left
+          margin_right:
+            type: select
+            label: Right Margin (X)
+            comment: 0%-100% from the right margin
+            options:
+              values: _select_data.margin_right
+      - label: ⎓ Row ⎓
+        value:
+          template: block-media-row
+          block: media-row
+          row_alignment: between
+        _inputs:
+          block:
+            hidden: true
+          row_alignment:
+            type: select
+            label: Row Justification
+            comment: >-
+              start (left) / center (center) / end (right) / between (even space
+              between media) / around (even space outside media)
+            options:
+              values: _select_data.row_alignment
+  about-page-builder-footer_links:
+    values:
+      - value:
+          link_title: ''
+          link_url: ''
+  home-page-builder-page_sections:
+    id_key: template
+    values:
+      - label: ⭐️  Selected Work
+        value:
+          template: block-media-feature
+          block: media-feature
+          image: null
+          color: null
+          title: ''
+          meta: ''
+          attached_collection: null
+          width: '33'
+          align_y: start
+          margin_y: '50'
+          margin_left: 0%
+          margin_right: 0%
+          title_margin_y: 35%
+          title_margin_left: 0%
+          title_margin_right: 0%
+          text_color: null
+          text_size: 2xl
+          line_height: normal
+          text_alignment: left
+          text_tracking: normal
+          font_weight: []
+          meta_align: left
+        text_key: attached_collection
+        _inputs:
+          block:
+            hidden: true
+          color:
+            comment: Background color show on image hover
+            options:
+              format: hex
+          title:
+            type: markdown
+            label: Collection Title
+            comment: >-
+              html enabled.<br>e.g. &lt;p style="text-align: right"&gt;Right
+              Align&lt;/p&gt;
+          meta:
+            label: Meta Title
+          attached_collection:
+            type: select
+            options:
+              values: collections.collections
+              value_key: content_path
+          width:
+            type: select
+            label: Media Width
+            options:
+              values: _select_data.width
+          align_y:
+            type: select
+            label: Row Alignment / Top to Bottom (Y)
+            comment: align top (start) / align center (center) / align bottom (end)
+            options:
+              values: _select_data.align_y
+          margin_y:
+            type: select
+            label: Media Top Margin (Y)
+            options:
+              values: _select_data.home-page-builder-margin_y
+          margin_left:
+            type: select
+            label: Media Left Margin (X)
+            comment: 0%-100% from the left margin
+            options:
+              values: _select_data.margin_left
+          margin_right:
+            type: select
+            label: Media Right Margin (X)
+            comment: 0%-100% from the right margin
+            options:
+              values: _select_data.margin_right
+          title_margin_y:
+            type: select
+            label: Title Top Margin (y)
+            comment: 0%-100% where the parallax starts from
+            options:
+              values: _select_data.title_margin_y
+          title_margin_left:
+            type: select
+            label: Title Left Margin (X)
+            options:
+              values: _select_data.title_margin_left
+          title_margin_right:
+            type: select
+            label: Title Right Margin (X)
+            options:
+              values: _select_data.title_margin_right
+          text_color:
+            options:
+              format: hex
+          text_size:
+            type: select
+            options:
+              values: _select_data.home-page-builder-text_size
+          line_height:
+            type: select
+            comment: 1-2 line height scale
+            options:
+              values: _select_data.line_height
+          text_alignment:
+            type: select
+            comment: left / center / right
+            options:
+              values: _select_data.home-page-builder-text_alignment
+          text_tracking:
+            type: select
+            comment: spacing between letters
+            options:
+              values: _select_data.text_tracking
+          font_weight:
+            type: multiselect
+            options:
+              values: _select_data.font_weight
+          meta_align:
+            type: select
+            label: Meta Title Alignment (X)
+            options:
+              values: _select_data.meta_align
+      - label: ⭐️  Selected Work - Vimeo
+        value:
+          template: block-media-feature-vimeo
+          block: media-feature-vimeo
+          vimeo_id: 0
+          block_aspect_ratio: []
+          color: null
+          show_controls: false
+          title: ''
+          meta: ''
+          attached_collection: null
+          width: '33'
+          align_y: start
+          margin_y: '50'
+          margin_left: 0%
+          margin_right: 0%
+          title_margin_y: 35%
+          title_margin_left: 0%
+          title_margin_right: 0%
+          text_color: null
+          text_size: 2xl
+          line_height: normal
+          text_alignment: left
+          text_tracking: normal
+          font_weight: []
+          meta_align: left
+        text_key: attached_collection
+        _inputs:
+          block:
+            hidden: true
+          vimeo_id:
+            type: number
+            comment: ''
+          block_aspect_ratio:
+            type: multiselect
+            label: Video Aspect Ratio
+            options:
+              values: _select_data.home-page-builder-block_aspect_ratio
+          color:
+            comment: Background color show on image hover
+            options:
+              format: hex
+          show_controls:
+            comment: show vimeo controls
+          title:
+            type: markdown
+            label: Collection Title
+            comment: >-
+              html enabled.<br>e.g. &lt;p style="text-align: right"&gt;Right
+              Align&lt;/p&gt;
+          meta:
+            label: Meta Title
+          attached_collection:
+            type: select
+            options:
+              values: collections.collections
+              value_key: content_path
+          width:
+            type: select
+            label: Media Width
+            options:
+              values: _select_data.width
+          align_y:
+            type: select
+            label: Row Alignment / Top to Bottom (Y)
+            comment: align top (start) / align center (center) / align bottom (end)
+            options:
+              values: _select_data.align_y
+          margin_y:
+            type: select
+            label: Media Top Margin (Y)
+            options:
+              values: _select_data.home-page-builder-margin_y
+          margin_left:
+            type: select
+            label: Media Left Margin (X)
+            comment: 0%-100% from the left margin
+            options:
+              values: _select_data.margin_left
+          margin_right:
+            type: select
+            label: Media Right Margin (X)
+            comment: 0%-100% from the right margin
+            options:
+              values: _select_data.margin_right
+          title_margin_y:
+            type: select
+            label: Title Top Margin (y)
+            comment: 0%-100% where the parallax starts from
+            options:
+              values: _select_data.title_margin_y
+          title_margin_left:
+            type: select
+            label: Title Left Margin (X)
+            options:
+              values: _select_data.title_margin_left
+          title_margin_right:
+            type: select
+            label: Title Right Margin (X)
+            options:
+              values: _select_data.title_margin_right
+          text_color:
+            options:
+              format: hex
+          text_size:
+            type: select
+            options:
+              values: _select_data.home-page-builder-text_size
+          line_height:
+            type: select
+            comment: 1-2 line height scale
+            options:
+              values: _select_data.line_height
+          text_alignment:
+            type: select
+            comment: left / center / right
+            options:
+              values: _select_data.home-page-builder-text_alignment
+          text_tracking:
+            type: select
+            comment: spacing between letters
+            options:
+              values: _select_data.text_tracking
+          font_weight:
+            type: multiselect
+            options:
+              values: _select_data.font_weight
+          meta_align:
+            type: select
+            label: Meta Title Alignment (X)
+            options:
+              values: _select_data.meta_align
+      - label: 🔼 Blog Popup
+        value:
+          template: block-modal-blog
+          block: modal-blog
+          attached_blog: posts/test-blog-posts.md
+          block_aspect_ratio: ''
+          title: ''
+          text_size: 2xl
+          color: null
+          width: '33'
+          align_y: start
+          margin_y: '50'
+          margin_left: 0%
+          margin_right: 0%
+        text_key: title
+        _inputs:
+          block:
+            hidden: true
+          attached_blog:
+            type: select
+            options:
+              values: collections.blog-posts
+              value_key: content_path
+          block_aspect_ratio:
+            hidden: true
+            type: select
+            options:
+              values: _select_data.block_aspect_ratio
+          text_size:
+            type: select
+            options:
+              values: _select_data.home-page-builder-text_size
+          color:
+            comment: Background color show on image hover
+            options:
+              format: hex
+          width:
+            type: select
+            label: Media Width
+            options:
+              values: _select_data.home-page-builder-width
+          align_y:
+            type: select
+            label: Row Alignment / Top to Bottom (Y)
+            comment: align top (start) / align center (center) / align bottom (end)
+            options:
+              values: _select_data.align_y
+          margin_y:
+            type: select
+            label: Top Margin (Y)
+            options:
+              values: _select_data.margin_y
+          margin_left:
+            type: select
+            label: Left Margin (X)
+            comment: 0%-100% from the left margin
+            options:
+              values: _select_data.margin_left
+          margin_right:
+            type: select
+            label: Right Margin (X)
+            comment: 0%-100% from the right margin
+            options:
+              values: _select_data.margin_right
+      - label: 🔤 Text
+        value:
+          template: block-media-text
+          block: media-text
+          text: ''
+          background_color: null
+          background_image_toggle: false
+          image: null
+          text_color: null
+          text_size: 2xl
+          text_alignment: left
+          text_tracking: normal
+          font_weight: []
+          width: '50'
+          align_y: start
+          margin_y: '50'
+          margin_left: 0%
+          margin_right: 0%
+          parallax: false
+          image_css: ''
+          caption_css: ''
+        text_key: text
+        _inputs:
+          block:
+            hidden: true
+          text:
+            type: markdown
+          background_color:
+            options:
+              format: hex
+          background_image_toggle:
+            label: Background Image
+          image:
+            label: Background Image
+          text_color:
+            options:
+              format: hex
+          text_size:
+            type: select
+            options:
+              values: _select_data.text_size
+          text_alignment:
+            type: select
+            comment: left / center / right
+            options:
+              values: _select_data.text_alignment
+          text_tracking:
+            type: select
+            comment: spacing between letters
+            options:
+              values: _select_data.text_tracking
+          font_weight:
+            type: multiselect
+            options:
+              values: _select_data.font_weight
+          width:
+            type: select
+            label: Media Width
+            options:
+              values: _select_data.width
+          align_y:
+            type: select
+            label: Row Alignment / Top to Bottom (Y)
+            comment: align top (start) / align center (center) / align bottom (end)
+            options:
+              values: _select_data.align_y
+          margin_y:
+            type: select
+            label: Top Margin (Y)
+            options:
+              values: _select_data.home-page-builder-margin_y
+          margin_left:
+            type: select
+            label: Left Margin (X)
+            comment: 0%-100% from the left margin
+            options:
+              values: _select_data.margin_left
+          margin_right:
+            type: select
+            label: Right Margin (X)
+            comment: 0%-100% from the right margin
+            options:
+              values: _select_data.margin_right
+      - label: ⎓ Row ⎓
+        value:
+          template: block-media-row
+          block: media-row
+          row_alignment: between
+        _inputs:
+          block:
+            hidden: true
+          row_alignment:
+            type: select
+            label: Row Justification
+            comment: >-
+              start (left) / center (center) / end (right) / between (even space
+              between media) / around (even space outside media)
+            options:
+              values: _select_data.row_alignment
+      - label: Media Link
+        value:
+          template: block-media-link
+          block: media-link
+          block_aspect_ratio: ''
+          media: null
+          title: ''
+          meta: ''
+          link: ''
+          text_size: 2xl
+          color: null
+          text_color: null
+          width: '33'
+          align_y: start
+          margin_y: '50'
+          margin_left: 0%
+          margin_right: 0%
+        text_key: title
+        _inputs:
+          block:
+            hidden: true
+          block_aspect_ratio:
+            type: select
+            options:
+              values: _select_data.block_aspect_ratio
+          media:
+            type: file
+          meta:
+            label: Meta Title
+          text_size:
+            type: select
+            options:
+              values: _select_data.home-page-builder-text_size
+          color:
+            label: Background Color
+            comment: Background color show on image hover
+            options:
+              format: hex
+          text_color:
+            options:
+              format: hex
+          width:
+            type: select
+            label: Media Width
+            options:
+              values: _select_data.home-page-builder-width
+          align_y:
+            type: select
+            label: Row Alignment / Top to Bottom (Y)
+            comment: align top (start) / align center (center) / align bottom (end)
+            options:
+              values: _select_data.align_y
+          margin_y:
+            type: select
+            label: Top Margin (Y)
+            options:
+              values: _select_data.margin_y
+          margin_left:
+            type: select
+            label: Left Margin (X)
+            comment: 0%-100% from the left margin
+            options:
+              values: _select_data.margin_left
+          margin_right:
+            type: select
+            label: Right Margin (X)
+            comment: 0%-100% from the right margin
+            options:
+              values: _select_data.margin_right
+_inputs:
+  template:
+    hidden: true
